@@ -11,6 +11,9 @@ import UIKit
 class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     static var leftButtons : [SwipeButton]?
     static var rightButtons : [SwipeButton]?
+    // left right 的约束  NSLayoutConstraint
+    var leftConstraint : NSLayoutConstraint?
+    var rightConstraint : NSLayoutConstraint?
     
     func SwipeViewbutClick(but: SwipeButton) {
         but.swipeButtonClick!(but: but , cell : self)
@@ -22,18 +25,39 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         backView.addSubview(leftView)
         backView.addSubview(rightView)
         backView.addSubview(view)
-        backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: self).leftSet(-leftView.wide).rightSet(rightView.wide))
+        let cons = backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: self).leftSet(-leftView.wide).rightSet(rightView.wide))!
+        leftConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Left)
+        rightConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Right)
+        
         leftView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unright, v: backView).width(leftView.wide))
         view.ff_edgesView(UIedgeView().top(backView , c: 0).bottom(backView, c: 0).left(leftView, c: 0).right(rightView, c: 0))
         rightView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unleft, v: backView).width(rightView.wide))
         
+        // 注册手势
         preparebackView()
+        // 设置选中样式
+        selectionStyle = UITableViewCellSelectionStyle.None
         leftView.delegate = self
         rightView.delegate = self
     }
     
+    func move(c:CGFloat){
+        leftConstraint?.constant += c
+        rightConstraint?.constant += c
+    }
+    
     private func preparebackView(){
-      
+        let pan = UIPanGestureRecognizer(target: self, action: "pan:")
+        backView.addGestureRecognizer(pan)
+    }
+    
+    func pan(pan:UIPanGestureRecognizer){
+        let point = pan.translationInView(backView)
+        move(point.x)
+        print(point.x)
+        print("left \(leftConstraint?.constant)   right \(rightConstraint?.constant)")
+        // 清零防止累加
+        pan.setTranslation(CGPointZero , inView: backView)
     }
     
     required init?(coder aDecoder: NSCoder) {
