@@ -10,7 +10,7 @@ import UIKit
 
 class JYSwipeTableCell: UITableViewCell {
     static var leftButtons : [SwipeButton]?
-    static var rightButtons : [SwipeButton]?
+//    static var rightButtons : [SwipeButton]?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -69,7 +69,7 @@ extension JYSwipeTableCell : UIScrollViewDelegate {
 }
 
 class SwipeView : UIView {
-    var wide = 100 as CGFloat
+    var wide = 200 as CGFloat
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,9 +79,9 @@ class SwipeView : UIView {
         if buttons == nil {
             return
         }
-        
+
         for but in buttons! {
-            addSubview(but)
+           addSubview(but)
         }
         
         self.ff_HorizontalTile(buttons!, insets: UIEdgeInsetsZero)
@@ -93,7 +93,7 @@ class SwipeView : UIView {
     
 }
 
-class SwipeButton : UIButton {
+class SwipeButton : UIButton , NSCopying{
     class func button (imageName: String, highlightedImageName: String?) -> SwipeButton {
         let but = SwipeButton(type: UIButtonType.Custom)
         but.setImage(UIImage(named: imageName), forState: UIControlState.Normal);
@@ -110,5 +110,10 @@ class SwipeButton : UIButton {
         but.backgroundColor = backgroundColor
         return but
     }
-
+    
+    func copyWithZone(zone: NSZone) -> AnyObject{
+//         CommonObj *result = [[[self class] allocWithZone:zone] init];
+        let result = SwipeButton.self.allocWithZone(zone)
+        return result;
+    }
 }

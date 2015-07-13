@@ -16,6 +16,7 @@
 		6418FD0E1B537AE700A3557C /* TableViewController-Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */; };
 		6418FD101B537E8100A3557C /* JYSwipeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FD0F1B537E8100A3557C /* JYSwipeTableCell.swift */; };
 		644148D81B537FC000DF3660 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */; };
+		64982AE21B53A25C00FA0747 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64982AE11B53A25C00FA0747 /* UIButton+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController-Demo.swift"; sourceTree = "<group>"; };
 		6418FD0F1B537E8100A3557C /* JYSwipeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYSwipeTableCell.swift; sourceTree = "<group>"; };
 		644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		64982AE11B53A25C00FA0747 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				6418FCDE1B537A5800A3557C /* AppDelegate.swift */,
 				6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */,
 				644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */,
+				64982AE11B53A25C00FA0747 /* UIButton+Extension.swift */,
 				6418FCE51B537A5800A3557C /* Assets.xcassets */,
 				6418FCE21B537A5800A3557C /* Main.storyboard */,
 				6418FCE71B537A5800A3557C /* LaunchScreen.storyboard */,
@@ -272,6 +275,7 @@
 				6418FD0E1B537AE700A3557C /* TableViewController-Demo.swift in Sources */,
 				644148D81B537FC000DF3660 /* UIView+AutoLayout.swift in Sources */,
 				6418FCDF1B537A5800A3557C /* AppDelegate.swift in Sources */,
+				64982AE21B53A25C00FA0747 /* UIButton+Extension.swift in Sources */,
 				6418FD101B537E8100A3557C /* JYSwipeTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
