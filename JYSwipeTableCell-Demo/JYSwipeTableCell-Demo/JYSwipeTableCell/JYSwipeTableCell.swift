@@ -8,9 +8,13 @@
 
 import UIKit
 
-class JYSwipeTableCell: UITableViewCell {
+class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     static var leftButtons : [SwipeButton]?
-//    static var rightButtons : [SwipeButton]?
+    static var rightButtons : [SwipeButton]?
+    
+    func SwipeViewbutClick(but: SwipeButton) {
+        but.swipeButtonClick!(but: but , cell : self)
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,6 +28,8 @@ class JYSwipeTableCell: UITableViewCell {
         rightView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unleft, v: scrollView).width(rightView.wide))
         
         prepareScrollView()
+        leftView.delegate = self
+        rightView.delegate = self
     }
     
     private func prepareScrollView(){
@@ -38,8 +44,8 @@ class JYSwipeTableCell: UITableViewCell {
     }
     
     private lazy var scrollView = UIScrollView()
-    lazy var leftView : SwipeView = SwipeView()
-    lazy var rightView : SwipeView = SwipeView()
+    lazy var leftView : SwipeView = SwipeView(frame: CGRectZero, left: true)
+    lazy var rightView : SwipeView = SwipeView(frame: CGRectZero, left: false)
     lazy var view = UIView()
 }
 
@@ -68,22 +74,26 @@ extension JYSwipeTableCell : UIScrollViewDelegate {
  
 }
 
+// 代理协议
+protocol SwipeViewDelegate: NSObjectProtocol {
+    func SwipeViewbutClick(but : SwipeButton)
+}
+
 class SwipeView : UIView {
     var wide = 0 as CGFloat
+    weak var delegate : SwipeViewDelegate?
     
-    override init(frame: CGRect) {
+     init(frame: CGRect , left : Bool ) {
         super.init(frame: frame)
         backgroundColor = UIColor.blueColor()
-        let buttons = JYSwipeTableCell.leftButtons
+        let buttons = left ? JYSwipeTableCell.leftButtons : JYSwipeTableCell.rightButtons
         
         if buttons == nil {
             return
         }
         
-         var buts = [SwipeButton]()
-  
+        var buts = [SwipeButton]()
         var left : UIView = self
-
         for but in buttons! {
             let butCopy = but.copy() as! SwipeButton
             addSubview(butCopy)
@@ -99,7 +109,7 @@ class SwipeView : UIView {
     }
 
     func swipeButtonClick(but : SwipeButton){
-        but.swipeButtonClick!(but : but , cell: nil)
+        delegate?.SwipeViewbutClick(but)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -108,11 +118,13 @@ class SwipeView : UIView {
     
 }
 
+
+// MARK : SwipeButton
 class SwipeButton : UIButton , NSCopying  {
     
-    var swipeButtonClick : ((but : SwipeButton , cell : JYSwipeTableCell?) -> ())?
+    var swipeButtonClick : ((but : SwipeButton , cell : JYSwipeTableCell) -> ())?
     
-    func setButClick(swipeButtonClick : (but : SwipeButton , cell : JYSwipeTableCell?) -> ()){
+    func setButClick(swipeButtonClick : (but : SwipeButton , cell : JYSwipeTableCell) -> ()){
         self.swipeButtonClick = swipeButtonClick
     }
 
