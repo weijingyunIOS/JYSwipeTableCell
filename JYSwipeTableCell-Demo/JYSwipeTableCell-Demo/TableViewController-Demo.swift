@@ -25,6 +25,19 @@ class TableViewController_Demo: UITableViewController {
         
         let but3 = SwipeButton.button(backgroundColor: UIColor.grayColor(), text: "删除3", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
         
+        but1.setButClick { (but, cell) -> () in
+            print(but.titleForState(UIControlState.Normal))
+        }
+        
+        but2.setButClick { (but, cell) -> () in
+            print(but.titleForState(UIControlState.Normal))
+        }
+        
+        but3.setButClick { (but, cell) -> () in
+            print(but.titleForState(UIControlState.Normal))
+        }
+    
+        
         JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
     }
     

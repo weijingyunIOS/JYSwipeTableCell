@@ -98,8 +98,8 @@ class SwipeView : UIView {
        
     }
 
-    func swipeButtonClick(but : UIButton){
-        print(but.titleForState(UIControlState.Normal))
+    func swipeButtonClick(but : SwipeButton){
+        but.swipeButtonClick!(but : but , cell: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -110,8 +110,10 @@ class SwipeView : UIView {
 
 class SwipeButton : UIButton , NSCopying  {
     
-    func swipeButtonClick(){
-        print(titleForState(UIControlState.Normal))
+    var swipeButtonClick : ((but : SwipeButton , cell : JYSwipeTableCell?) -> ())?
+    
+    func setButClick(swipeButtonClick : (but : SwipeButton , cell : JYSwipeTableCell?) -> ()){
+        self.swipeButtonClick = swipeButtonClick
     }
 
     class func button(image: UIImage? = nil , backgroundImage : UIImage? = nil, backgroundColor : UIColor? = nil , text: String? = nil , textFont: UIFont? = nil, textcolor : UIColor? = nil ) -> SwipeButton {
@@ -131,6 +133,8 @@ class SwipeButton : UIButton , NSCopying  {
     
     func copyWithZone(zone: NSZone) -> AnyObject{
 
-        return SwipeButton.button(imageForState(UIControlState.Normal), backgroundImage: backgroundImageForState(UIControlState.Normal), backgroundColor: backgroundColor, text: titleForState(UIControlState.Normal), textFont: titleLabel?.font, textcolor: titleColorForState(UIControlState.Normal))
+        let but = SwipeButton.button(imageForState(UIControlState.Normal), backgroundImage: backgroundImageForState(UIControlState.Normal), backgroundColor: backgroundColor, text: titleForState(UIControlState.Normal), textFont: titleLabel?.font, textcolor: titleColorForState(UIControlState.Normal))
+        but.swipeButtonClick = self.swipeButtonClick
+        return but
     }
 }
