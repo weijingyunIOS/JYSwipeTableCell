@@ -13,11 +13,16 @@ class TableViewController_Demo: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.redColor()
+        tableView.rowHeight = 100
         prepareTableViewCell()
     }
     
     func prepareTableViewCell(){
         tableView.registerClass(JYSwipeTableCell.self, forCellReuseIdentifier: JYTableCell)
+        let but1 = SwipeButton.button("删除1", textFont: 18, backgroundColor: UIColor.redColor())
+        let but2 = SwipeButton.button("删除2", textFont: 18, backgroundColor: UIColor.redColor())
+        let but3 = SwipeButton.button("删除3", textFont: 18, backgroundColor: UIColor.redColor())
+        JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +31,9 @@ class TableViewController_Demo: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(JYTableCell, forIndexPath: indexPath) as! JYSwipeTableCell
-    
+        
+        cell.view.backgroundColor = UIColor.purpleColor()
+
         return cell
     }
 }
