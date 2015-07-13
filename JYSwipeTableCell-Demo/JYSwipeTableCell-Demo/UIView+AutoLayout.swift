@@ -605,7 +605,7 @@ public class UIedgeView : NSObject {
     }
     
     private func ff_offset (s: String , c: CGFloat) -> UIedgeView {
-        let laout = dict[ffTop] as? JYlayout
+        let laout = dict[s] as? JYlayout
         if laout != nil {
             laout!.offset = c
         }

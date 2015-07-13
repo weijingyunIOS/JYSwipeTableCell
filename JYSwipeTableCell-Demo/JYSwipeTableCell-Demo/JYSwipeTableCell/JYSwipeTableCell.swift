@@ -18,61 +18,35 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(scrollView)
-        scrollView.addSubview(leftView)
-        scrollView.addSubview(rightView)
-        scrollView.addSubview(view)
-        scrollView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: self))
-        leftView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unright, v: scrollView).width(leftView.wide))
-        view.ff_edgesView(UIedgeView().top(scrollView , c: 0).bottom(scrollView, c: 0).left(leftView, c: 0).right(rightView, c: 0).size(scrollView))
-        rightView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unleft, v: scrollView).width(rightView.wide))
+        addSubview(backView)
+        backView.addSubview(leftView)
+        backView.addSubview(rightView)
+        backView.addSubview(view)
+        backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: self).leftSet(-leftView.wide).rightSet(rightView.wide))
+        leftView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unright, v: backView).width(leftView.wide))
+        view.ff_edgesView(UIedgeView().top(backView , c: 0).bottom(backView, c: 0).left(leftView, c: 0).right(rightView, c: 0))
+        rightView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.unleft, v: backView).width(rightView.wide))
         
-        prepareScrollView()
+        preparebackView()
         leftView.delegate = self
         rightView.delegate = self
     }
     
-    private func prepareScrollView(){
-        scrollView.delegate = self
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.bounces = false
-        scrollView.contentOffset = CGPoint(x: 100, y: 0)
+    private func preparebackView(){
+      
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var scrollView = UIScrollView()
+    private lazy var backView = UIView()
     lazy var leftView : SwipeView = SwipeView(frame: CGRectZero, left: true)
     lazy var rightView : SwipeView = SwipeView(frame: CGRectZero, left: false)
     lazy var view = UIView()
 }
 
-extension JYSwipeTableCell : UIScrollViewDelegate {
 
-//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//        let px = scrollView.contentOffset.x
-//    }
-    
-    @objc internal func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let px = scrollView.contentOffset.x
-        let leftWide = leftView.wide
-        let rightWide = rightView.wide
-        var setx = -1 as CGFloat
-        
-        if leftWide != 0 && px < leftWide {
-            setx = px > leftWide * 0.5 ? leftWide : 0
-        }
-        if  rightWide != 0 && px > leftWide {
-            setx = px > (leftWide + rightWide * 0.5) ? (leftWide + rightWide) : leftWide
-        }
-        UIView.animateWithDuration(0.2) { () -> Void in
-            scrollView.contentOffset.x = setx
-        }
-    }
- 
-}
 
 // 代理协议
 protocol SwipeViewDelegate: NSObjectProtocol {

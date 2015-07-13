@@ -21,7 +21,7 @@ class TableViewController_Demo: UITableViewController {
         tableView.registerClass(JYSwipeTableCell.self, forCellReuseIdentifier: JYTableCell)
         let but1 = SwipeButton.button(backgroundColor: UIColor.redColor(), text: "删除1", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
         
-        let but2 = SwipeButton.button(backgroundColor: UIColor.purpleColor(), text: "删除2", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
+        let but2 = SwipeButton.button(backgroundColor: UIColor.orangeColor(), text: "删除2", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
         
         let but3 = SwipeButton.button(backgroundColor: UIColor.grayColor(), text: "删除3", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
         
@@ -38,7 +38,8 @@ class TableViewController_Demo: UITableViewController {
         }
     
         
-        JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
+        JYSwipeTableCell.leftButtons = [but1 , but2 ]
+        JYSwipeTableCell.rightButtons = [but2 , but3]
     }
     
     func swipeButtonClick(){
