@@ -11,6 +11,9 @@ import UIKit
 class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     static var leftButtons : [SwipeButton]?
     static var rightButtons : [SwipeButton]?
+    // 记录打开的cell
+    private static var openCell : JYSwipeTableCell?
+    
     // left right 的约束  NSLayoutConstraint
     var leftConstraint : NSLayoutConstraint?
     var rightConstraint : NSLayoutConstraint?
@@ -83,13 +86,13 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         // 结束后的位置
         if pan.state == UIGestureRecognizerState.Ended {
             if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
-                move(-(leftConstraint?.constant)! , animation : true)
+                openEditCell(leftConstraint)
             }else if rightConstraint?.constant >= rightView.wide {
-                move(-(leftConstraint?.constant)! - leftView.wide , animation : true)
+                closeEditCell()
             }else if rightConstraint?.constant >= rightView.wide * 0.5 {
-                move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
+                closeEditCell()
             }else {
-                move(-(rightConstraint?.constant)! , animation : true)
+                openEditCell(rightConstraint)
             }
         }
         
@@ -97,7 +100,17 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         pan.setTranslation(CGPointZero , inView: backView)
     }
     
+    func closeEditCell() {
+        move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
+    }
     
+    func openEditCell(constraint:NSLayoutConstraint?){
+        move(-(constraint?.constant)! , animation : true)
+        if self != JYSwipeTableCell.openCell {
+         JYSwipeTableCell.openCell?.closeEditCell()
+        }
+        JYSwipeTableCell.openCell = self
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
