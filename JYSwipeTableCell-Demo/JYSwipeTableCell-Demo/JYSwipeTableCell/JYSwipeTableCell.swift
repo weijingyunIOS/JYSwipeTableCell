@@ -69,7 +69,7 @@ extension JYSwipeTableCell : UIScrollViewDelegate {
 }
 
 class SwipeView : UIView {
-    var wide = 200 as CGFloat
+    var wide = 0 as CGFloat
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,41 +79,58 @@ class SwipeView : UIView {
         if buttons == nil {
             return
         }
+        
+         var buts = [SwipeButton]()
+  
+        var left : UIView = self
 
         for but in buttons! {
-           addSubview(but)
+            let butCopy = but.copy() as! SwipeButton
+            addSubview(butCopy)
+            buts.append(butCopy)
+            wide += butCopy.frame.width
+            butCopy.ff_edgesView(UIedgeView().top(self, c: 0).left(left, c: 0).bottom(self, c: 0))
+            left = butCopy
+            butCopy.addTarget(self, action: "swipeButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         }
         
-        self.ff_HorizontalTile(buttons!, insets: UIEdgeInsetsZero)
+        buts.last?.ff_edgesView(UIedgeView().right(self, c: 0))
+       
     }
 
+    func swipeButtonClick(but : UIButton){
+        print(but.titleForState(UIControlState.Normal))
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
-class SwipeButton : UIButton , NSCopying{
-    class func button (imageName: String, highlightedImageName: String?) -> SwipeButton {
+class SwipeButton : UIButton , NSCopying  {
+    
+    func swipeButtonClick(){
+        print(titleForState(UIControlState.Normal))
+    }
+
+    class func button(image: UIImage? = nil , backgroundImage : UIImage? = nil, backgroundColor : UIColor? = nil , text: String? = nil , textFont: UIFont? = nil, textcolor : UIColor? = nil ) -> SwipeButton {
         let but = SwipeButton(type: UIButtonType.Custom)
-        but.setImage(UIImage(named: imageName), forState: UIControlState.Normal);
-        let hImageName = highlightedImageName ?? imageName + "_highlighted"
-        but.setImage(UIImage(named: hImageName), forState: UIControlState.Highlighted)
+        but.setImage(image, forState: UIControlState.Normal)
+        but.setBackgroundImage(backgroundImage, forState: UIControlState.Normal)
+        but.backgroundColor = backgroundColor
+        but.setTitle(text, forState: UIControlState.Normal)
+        but.titleLabel?.font = textFont
+        but.setTitleColor(textcolor, forState: UIControlState.Normal)
+    
+        but.adjustsImageWhenHighlighted = false
+        but.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         but.sizeToFit()
         return but
     }
     
-    class func button (text: String, textFont: CGFloat , backgroundColor : UIColor)  -> SwipeButton {
-        let but = SwipeButton(type: UIButtonType.Custom)
-        but.setTitle(text, forState: UIControlState.Normal)
-        but.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        but.backgroundColor = backgroundColor
-        return but
-    }
-    
     func copyWithZone(zone: NSZone) -> AnyObject{
-//         CommonObj *result = [[[self class] allocWithZone:zone] init];
-        let result = SwipeButton.self.allocWithZone(zone)
-        return result;
+
+        return SwipeButton.button(imageForState(UIControlState.Normal), backgroundImage: backgroundImageForState(UIControlState.Normal), backgroundColor: backgroundColor, text: titleForState(UIControlState.Normal), textFont: titleLabel?.font, textcolor: titleColorForState(UIControlState.Normal))
     }
 }

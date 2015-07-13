@@ -19,10 +19,17 @@ class TableViewController_Demo: UITableViewController {
     
     func prepareTableViewCell(){
         tableView.registerClass(JYSwipeTableCell.self, forCellReuseIdentifier: JYTableCell)
-        let but1 = SwipeButton.button("删除1", textFont: 18, backgroundColor: UIColor.redColor())
-        let but2 = SwipeButton.button("删除2", textFont: 18, backgroundColor: UIColor.purpleColor())
-        let but3 = SwipeButton.button("删除3", textFont: 18, backgroundColor: UIColor.blueColor())
+        let but1 = SwipeButton.button(backgroundColor: UIColor.redColor(), text: "删除1", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
+        
+        let but2 = SwipeButton.button(backgroundColor: UIColor.purpleColor(), text: "删除2", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
+        
+        let but3 = SwipeButton.button(backgroundColor: UIColor.grayColor(), text: "删除3", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
+        
         JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
+    }
+    
+    func swipeButtonClick(){
+        print("asdasd")
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
