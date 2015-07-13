@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6418FCDF1B537A5800A3557C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FCDE1B537A5800A3557C /* AppDelegate.swift */; };
+		6418FCE41B537A5800A3557C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6418FCE21B537A5800A3557C /* Main.storyboard */; };
+		6418FCE61B537A5800A3557C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6418FCE51B537A5800A3557C /* Assets.xcassets */; };
+		6418FCE91B537A5800A3557C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6418FCE71B537A5800A3557C /* LaunchScreen.storyboard */; };
+		6418FCF41B537A5800A3557C /* JYSwipeTableCell_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FCF31B537A5800A3557C /* JYSwipeTableCell_DemoTests.swift */; };
+		6418FCFF1B537A5800A3557C /* JYSwipeTableCell_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FCFE1B537A5800A3557C /* JYSwipeTableCell_DemoUITests.swift */; };
+		6418FD0E1B537AE700A3557C /* TableViewController-Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */; };
+		6418FD101B537E8100A3557C /* JYSwipeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418FD0F1B537E8100A3557C /* JYSwipeTableCell.swift */; };
+		644148D81B537FC000DF3660 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6418FCF01B537A5800A3557C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6418FCD31B537A5800A3557C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6418FCDA1B537A5800A3557C;
+			remoteInfo = "JYSwipeTableCell-Demo";
+		};
+		6418FCFB1B537A5800A3557C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6418FCD31B537A5800A3557C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6418FCDA1B537A5800A3557C;
+			remoteInfo = "JYSwipeTableCell-Demo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6418FCDB1B537A5800A3557C /* JYSwipeTableCell-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JYSwipeTableCell-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6418FCDE1B537A5800A3557C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6418FCE31B537A5800A3557C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6418FCE51B537A5800A3557C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6418FCE81B537A5800A3557C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6418FCEA1B537A5800A3557C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6418FCEF1B537A5800A3557C /* JYSwipeTableCell-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JYSwipeTableCell-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6418FCF31B537A5800A3557C /* JYSwipeTableCell_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYSwipeTableCell_DemoTests.swift; sourceTree = "<group>"; };
+		6418FCF51B537A5800A3557C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6418FCFA1B537A5800A3557C /* JYSwipeTableCell-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JYSwipeTableCell-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6418FCFE1B537A5800A3557C /* JYSwipeTableCell_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYSwipeTableCell_DemoUITests.swift; sourceTree = "<group>"; };
+		6418FD001B537A5800A3557C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController-Demo.swift"; sourceTree = "<group>"; };
+		6418FD0F1B537E8100A3557C /* JYSwipeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JYSwipeTableCell.swift; sourceTree = "<group>"; };
+		644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6418FCD81B537A5800A3557C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCEC1B537A5800A3557C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCF71B537A5800A3557C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6418FCD21B537A5800A3557C = {
+			isa = PBXGroup;
+			children = (
+				6418FCDD1B537A5800A3557C /* JYSwipeTableCell-Demo */,
+				6418FCF21B537A5800A3557C /* JYSwipeTableCell-DemoTests */,
+				6418FCFD1B537A5800A3557C /* JYSwipeTableCell-DemoUITests */,
+				6418FCDC1B537A5800A3557C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6418FCDC1B537A5800A3557C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6418FCDB1B537A5800A3557C /* JYSwipeTableCell-Demo.app */,
+				6418FCEF1B537A5800A3557C /* JYSwipeTableCell-DemoTests.xctest */,
+				6418FCFA1B537A5800A3557C /* JYSwipeTableCell-DemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6418FCDD1B537A5800A3557C /* JYSwipeTableCell-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6418FD0C1B537A8200A3557C /* JYSwipeTableCell */,
+				6418FCDE1B537A5800A3557C /* AppDelegate.swift */,
+				6418FD0D1B537AE700A3557C /* TableViewController-Demo.swift */,
+				644148D71B537FC000DF3660 /* UIView+AutoLayout.swift */,
+				6418FCE51B537A5800A3557C /* Assets.xcassets */,
+				6418FCE21B537A5800A3557C /* Main.storyboard */,
+				6418FCE71B537A5800A3557C /* LaunchScreen.storyboard */,
+				6418FCEA1B537A5800A3557C /* Info.plist */,
+			);
+			path = "JYSwipeTableCell-Demo";
+			sourceTree = "<group>";
+		};
+		6418FCF21B537A5800A3557C /* JYSwipeTableCell-DemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				6418FCF31B537A5800A3557C /* JYSwipeTableCell_DemoTests.swift */,
+				6418FCF51B537A5800A3557C /* Info.plist */,
+			);
+			path = "JYSwipeTableCell-DemoTests";
+			sourceTree = "<group>";
+		};
+		6418FCFD1B537A5800A3557C /* JYSwipeTableCell-DemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6418FCFE1B537A5800A3557C /* JYSwipeTableCell_DemoUITests.swift */,
+				6418FD001B537A5800A3557C /* Info.plist */,
+			);
+			path = "JYSwipeTableCell-DemoUITests";
+			sourceTree = "<group>";
+		};
+		6418FD0C1B537A8200A3557C /* JYSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6418FD0F1B537E8100A3557C /* JYSwipeTableCell.swift */,
+			);
+			path = JYSwipeTableCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6418FCDA1B537A5800A3557C /* JYSwipeTableCell-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6418FD031B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-Demo" */;
+			buildPhases = (
+				6418FCD71B537A5800A3557C /* Sources */,
+				6418FCD81B537A5800A3557C /* Frameworks */,
+				6418FCD91B537A5800A3557C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JYSwipeTableCell-Demo";
+			productName = "JYSwipeTableCell-Demo";
+			productReference = 6418FCDB1B537A5800A3557C /* JYSwipeTableCell-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6418FCEE1B537A5800A3557C /* JYSwipeTableCell-DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6418FD061B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-DemoTests" */;
+			buildPhases = (
+				6418FCEB1B537A5800A3557C /* Sources */,
+				6418FCEC1B537A5800A3557C /* Frameworks */,
+				6418FCED1B537A5800A3557C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6418FCF11B537A5800A3557C /* PBXTargetDependency */,
+			);
+			name = "JYSwipeTableCell-DemoTests";
+			productName = "JYSwipeTableCell-DemoTests";
+			productReference = 6418FCEF1B537A5800A3557C /* JYSwipeTableCell-DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6418FCF91B537A5800A3557C /* JYSwipeTableCell-DemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6418FD091B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-DemoUITests" */;
+			buildPhases = (
+				6418FCF61B537A5800A3557C /* Sources */,
+				6418FCF71B537A5800A3557C /* Frameworks */,
+				6418FCF81B537A5800A3557C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6418FCFC1B537A5800A3557C /* PBXTargetDependency */,
+			);
+			name = "JYSwipeTableCell-DemoUITests";
+			productName = "JYSwipeTableCell-DemoUITests";
+			productReference = 6418FCFA1B537A5800A3557C /* JYSwipeTableCell-DemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6418FCD31B537A5800A3557C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = wei_jingyun;
+				TargetAttributes = {
+					6418FCDA1B537A5800A3557C = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					6418FCEE1B537A5800A3557C = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 6418FCDA1B537A5800A3557C;
+					};
+					6418FCF91B537A5800A3557C = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 6418FCDA1B537A5800A3557C;
+					};
+				};
+			};
+			buildConfigurationList = 6418FCD61B537A5800A3557C /* Build configuration list for PBXProject "JYSwipeTableCell-Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6418FCD21B537A5800A3557C;
+			productRefGroup = 6418FCDC1B537A5800A3557C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6418FCDA1B537A5800A3557C /* JYSwipeTableCell-Demo */,
+				6418FCEE1B537A5800A3557C /* JYSwipeTableCell-DemoTests */,
+				6418FCF91B537A5800A3557C /* JYSwipeTableCell-DemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6418FCD91B537A5800A3557C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6418FCE91B537A5800A3557C /* LaunchScreen.storyboard in Resources */,
+				6418FCE61B537A5800A3557C /* Assets.xcassets in Resources */,
+				6418FCE41B537A5800A3557C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCED1B537A5800A3557C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCF81B537A5800A3557C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6418FCD71B537A5800A3557C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6418FD0E1B537AE700A3557C /* TableViewController-Demo.swift in Sources */,
+				644148D81B537FC000DF3660 /* UIView+AutoLayout.swift in Sources */,
+				6418FCDF1B537A5800A3557C /* AppDelegate.swift in Sources */,
+				6418FD101B537E8100A3557C /* JYSwipeTableCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCEB1B537A5800A3557C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6418FCF41B537A5800A3557C /* JYSwipeTableCell_DemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6418FCF61B537A5800A3557C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6418FCFF1B537A5800A3557C /* JYSwipeTableCell_DemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6418FCF11B537A5800A3557C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6418FCDA1B537A5800A3557C /* JYSwipeTableCell-Demo */;
+			targetProxy = 6418FCF01B537A5800A3557C /* PBXContainerItemProxy */;
+		};
+		6418FCFC1B537A5800A3557C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6418FCDA1B537A5800A3557C /* JYSwipeTableCell-Demo */;
+			targetProxy = 6418FCFB1B537A5800A3557C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6418FCE21B537A5800A3557C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6418FCE31B537A5800A3557C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6418FCE71B537A5800A3557C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6418FCE81B537A5800A3557C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6418FD011B537A5800A3557C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6418FD021B537A5800A3557C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6418FD041B537A5800A3557C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "JYSwipeTableCell-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6418FD051B537A5800A3557C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "JYSwipeTableCell-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6418FD071B537A5800A3557C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "JYSwipeTableCell-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JYSwipeTableCell-Demo.app/JYSwipeTableCell-Demo";
+			};
+			name = Debug;
+		};
+		6418FD081B537A5800A3557C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "JYSwipeTableCell-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JYSwipeTableCell-Demo.app/JYSwipeTableCell-Demo";
+			};
+			name = Release;
+		};
+		6418FD0A1B537A5800A3557C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "JYSwipeTableCell-DemoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "JYSwipeTableCell-Demo";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		6418FD0B1B537A5800A3557C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "JYSwipeTableCell-DemoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.wei-jingyun.JYSwipeTableCell-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "JYSwipeTableCell-Demo";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6418FCD61B537A5800A3557C /* Build configuration list for PBXProject "JYSwipeTableCell-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6418FD011B537A5800A3557C /* Debug */,
+				6418FD021B537A5800A3557C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6418FD031B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6418FD041B537A5800A3557C /* Debug */,
+				6418FD051B537A5800A3557C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6418FD061B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6418FD071B537A5800A3557C /* Debug */,
+				6418FD081B537A5800A3557C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6418FD091B537A5800A3557C /* Build configuration list for PBXNativeTarget "JYSwipeTableCell-DemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6418FD0A1B537A5800A3557C /* Debug */,
+				6418FD0B1B537A5800A3557C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6418FCD31B537A5800A3557C /* Project object */;
+}
