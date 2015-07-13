@@ -15,8 +15,11 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     var leftConstraint : NSLayoutConstraint?
     var rightConstraint : NSLayoutConstraint?
     
+    // MARK: 点击事件
     func SwipeViewbutClick(but: SwipeButton) {
+        assert(but.swipeButtonClick != nil, "必须实现SwipeButton的block回调方法")
         but.swipeButtonClick!(but: but , cell : self)
+        move(-(rightConstraint?.constant)!, animation: true)
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -41,41 +44,60 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         rightView.delegate = self
     }
     
-    func move(c:CGFloat){
-        leftConstraint?.constant += c
-        rightConstraint?.constant += c
-    }
-    
+// MARK: - 手势关键
     private func preparebackView(){
         let pan = UIPanGestureRecognizer(target: self, action: "pan:")
         backView.addGestureRecognizer(pan)
     }
     
+    func move(c:CGFloat , animation : Bool){
+        self.leftConstraint?.constant += c
+        self.rightConstraint?.constant += c
+        if animation {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+            })
+        }
+    }
+    
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
         
-        print(point.x)
-        print("left \(leftConstraint?.constant)   right \(rightConstraint?.constant)")
-        
+        // 限制最大的滚动
         if point.x > 0 { // 左滑动 
             if point.x + (leftConstraint?.constant)! >= 0 {
-                move( -(leftConstraint?.constant)!)
+                move( -(leftConstraint?.constant)! , animation : false)
             }else {
-                move(point.x)
+                move(point.x , animation : false)
             }
         
         }else {
             if point.x + (rightConstraint?.constant)! <= 0 {
-                move( -(rightConstraint?.constant)!)
+                move( -(rightConstraint?.constant)! , animation : false)
             }else {
-                move(point.x)
+                move(point.x , animation : false)
             }
         }
         
+        // 结束后的位置
+        if pan.state == UIGestureRecognizerState.Ended {
+            if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
+                move(-(leftConstraint?.constant)! , animation : true)
+            }else if rightConstraint?.constant >= rightView.wide {
+                move(-(leftConstraint?.constant)! - leftView.wide , animation : true)
+            }else if rightConstraint?.constant >= rightView.wide * 0.5 {
+                move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
+            }else {
+                move(-(rightConstraint?.constant)! , animation : true)
+            }
+        }
         
         // 清零防止累加
         pan.setTranslation(CGPointZero , inView: backView)
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

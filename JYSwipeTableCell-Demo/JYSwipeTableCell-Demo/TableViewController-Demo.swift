@@ -38,7 +38,7 @@ class TableViewController_Demo: UITableViewController {
         }
     
         
-        JYSwipeTableCell.leftButtons = [but1 , but2 ]
+        JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
         JYSwipeTableCell.rightButtons = [but2 , but3]
     }
     
