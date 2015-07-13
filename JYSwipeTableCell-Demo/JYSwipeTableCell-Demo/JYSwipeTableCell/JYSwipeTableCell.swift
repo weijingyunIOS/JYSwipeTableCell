@@ -53,9 +53,26 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
-        move(point.x)
+        
         print(point.x)
         print("left \(leftConstraint?.constant)   right \(rightConstraint?.constant)")
+        
+        if point.x > 0 { // 左滑动 
+            if point.x + (leftConstraint?.constant)! >= 0 {
+                move( -(leftConstraint?.constant)!)
+            }else {
+                move(point.x)
+            }
+        
+        }else {
+            if point.x + (rightConstraint?.constant)! <= 0 {
+                move( -(rightConstraint?.constant)!)
+            }else {
+                move(point.x)
+            }
+        }
+        
+        
         // 清零防止累加
         pan.setTranslation(CGPointZero , inView: backView)
     }
