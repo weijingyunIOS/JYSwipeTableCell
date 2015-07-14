@@ -18,6 +18,10 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     var leftConstraint : NSLayoutConstraint?
     var rightConstraint : NSLayoutConstraint?
     
+    class func closeEditCell(){
+        JYSwipeTableCell.openCell?.closeEditCell()
+    }
+    
     // MARK: 点击事件
     func SwipeViewbutClick(but: SwipeButton) {
         assert(but.swipeButtonClick != nil, "必须实现SwipeButton的block回调方法")
@@ -77,20 +81,31 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         }
     }
     
+    var panMoveX = 0
+    
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
-        
         print("y:\(point.y)")
+        maxMove(point)
         
+        // 结束后的位置
+        if pan.state == UIGestureRecognizerState.Ended {
+            moveEnd()
+        }
         
+        // 清零防止累加
+        pan.setTranslation(CGPointZero , inView: backView)
+    }
+    
+    func maxMove(point : CGPoint){
         // 限制最大的滚动
-        if point.x > 0 { // 左滑动 
+        if point.x > 0 { // 左滑动
             if point.x + (leftConstraint?.constant)! >= 0 {
                 move( -(leftConstraint?.constant)! , animation : false)
             }else {
                 move(point.x , animation : false)
             }
-        
+            
         }else {
             if point.x + (rightConstraint?.constant)! <= 0 {
                 move( -(rightConstraint?.constant)! , animation : false)
@@ -98,25 +113,21 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
                 move(point.x , animation : false)
             }
         }
-        
-        // 结束后的位置
-        if pan.state == UIGestureRecognizerState.Ended {
-            if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
-                openEditCell(leftConstraint)
-            }else if rightConstraint?.constant >= rightView.wide {
-                closeEditCell()
-            }else if rightConstraint?.constant >= rightView.wide * 0.5 {
-                closeEditCell()
-            }else {
-                openEditCell(rightConstraint)
-            }
-        }
-        
-        // 清零防止累加
-        pan.setTranslation(CGPointZero , inView: backView)
     }
     
-    func closeEditCell() {
+    func moveEnd(){
+        if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
+            openEditCell(leftConstraint)
+        }else if rightConstraint?.constant >= rightView.wide {
+            closeEditCell()
+        }else if rightConstraint?.constant >= rightView.wide * 0.5 {
+            closeEditCell()
+        }else {
+            openEditCell(rightConstraint)
+        }
+    }
+    
+    private func closeEditCell() {
         move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
     }
     

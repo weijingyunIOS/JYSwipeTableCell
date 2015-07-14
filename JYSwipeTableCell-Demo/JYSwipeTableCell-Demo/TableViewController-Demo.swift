@@ -57,4 +57,9 @@ class TableViewController_Demo: UITableViewController {
 
         return cell
     }
+    
+    // 滚动时收回cell 必须加上该句
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        JYSwipeTableCell.closeEditCell()
+    }
 }
