@@ -51,6 +51,10 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     
     
     func pan(pan:UIPanGestureRecognizer){
+        if self != JYSwipeTableCell.openCell {
+            JYSwipeTableCell.openCell?.closeEditCell()
+        }
+        
         let point = pan.translationInView(backView)
         maxMove(point)
         
