@@ -18,28 +18,44 @@ class TableViewController_Demo: UITableViewController {
     }
     
     func prepareTableViewCell(){
+        // 注册JYSwipeTableCell
         tableView.registerClass(JYSwipeTableCell.self, forCellReuseIdentifier: JYTableCell)
-        let but1 = SwipeButton.button(backgroundColor: UIColor.redColor(), text: "删除1", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
         
-        let but2 = SwipeButton.button(backgroundColor: UIColor.orangeColor(), text: "删除2", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
+        // 左边的图片 but 
+        let edge = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        let imageBut1 = SwipeButton.button(UIImage(named: "check"),backgroundColor: UIColor.greenColor(),EdgeInsets:edge)
+        let imageBut2 = SwipeButton.button(UIImage(named: "fav"),backgroundColor: UIColor(red: 0, green: 0x99/255.0, blue: 0xcc/255.0, alpha: 1.0),EdgeInsets:edge)
+        let imageBut3 = SwipeButton.button(UIImage(named: "menu"),backgroundColor: UIColor(red: 0.59, green: 0.29, blue: 0.08, alpha: 1.0),EdgeInsets:edge)
         
-        let but3 = SwipeButton.button(backgroundColor: UIColor.grayColor(), text: "删除3", textFont: UIFont.systemFontOfSize(18), textcolor: UIColor.whiteColor())
-        
-        but1.setButClick { (but, cell) -> () in
-            print(but.titleForState(UIControlState.Normal))
+        imageBut1.setButClick { (but, cell) -> () in
+            print("check")
         }
         
-        but2.setButClick { (but, cell) -> () in
-            print(but.titleForState(UIControlState.Normal))
+        imageBut2.setButClick { (but, cell) -> () in
+            print("fav")
         }
         
-        but3.setButClick { (but, cell) -> () in
-            print(but.titleForState(UIControlState.Normal))
+        imageBut3.setButClick { (but, cell) -> () in
+            print("menu")
         }
+        
+        JYSwipeTableCell.leftButtons = [imageBut1 , imageBut2 , imageBut3]
+        
+        
+        // 右边的文字 but
+        let textBut1 = SwipeButton.button(backgroundColor: UIColor.redColor(), text: "删除", textFont: UIFont.systemFontOfSize(22), textcolor: UIColor.whiteColor())
+        
+        let textBut2 = SwipeButton.button(backgroundColor: UIColor.orangeColor(), text: "移动", textFont: UIFont.systemFontOfSize(22), textcolor: UIColor.whiteColor())
     
+        textBut1.setButClick { (but, cell) -> () in
+            print(but.titleForState(UIControlState.Normal))
+        }
         
-        JYSwipeTableCell.leftButtons = [but1 , but2 , but3]
-        JYSwipeTableCell.rightButtons = [but2 , but3]
+        textBut2.setButClick { (but, cell) -> () in
+            print(but.titleForState(UIControlState.Normal))
+        }
+        
+        JYSwipeTableCell.rightButtons = [textBut2 , textBut1]
     }
     
     func swipeButtonClick(){

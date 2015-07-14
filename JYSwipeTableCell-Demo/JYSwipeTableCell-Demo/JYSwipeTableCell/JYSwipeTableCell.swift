@@ -26,7 +26,7 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     func SwipeViewbutClick(but: SwipeButton) {
         assert(but.swipeButtonClick != nil, "必须实现SwipeButton的block回调方法")
         but.swipeButtonClick!(but: but , cell : self)
-        move(-(rightConstraint?.constant)!, animation: true)
+        closeEditCell()
     }
     
     
@@ -160,7 +160,7 @@ protocol SwipeViewDelegate: NSObjectProtocol {
     func SwipeViewbutClick(but : SwipeButton)
 }
 
-private class SwipeView : UIView {
+class SwipeView : UIView {
     var wide = 0 as CGFloat
     weak var delegate : SwipeViewDelegate?
     
@@ -209,7 +209,7 @@ class SwipeButton : UIButton , NSCopying  {
         self.swipeButtonClick = swipeButtonClick
     }
 
-    class func button(image: UIImage? = nil , backgroundImage : UIImage? = nil, backgroundColor : UIColor? = nil , text: String? = nil , textFont: UIFont? = nil, textcolor : UIColor? = nil ) -> SwipeButton {
+    class func button(image: UIImage? = nil , backgroundImage : UIImage? = nil, backgroundColor : UIColor? = nil , text: String? = nil , textFont: UIFont? = nil, textcolor : UIColor? = nil , EdgeInsets : UIEdgeInsets? = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) ) -> SwipeButton {
         let but = SwipeButton(type: UIButtonType.Custom)
         but.setImage(image, forState: UIControlState.Normal)
         but.setBackgroundImage(backgroundImage, forState: UIControlState.Normal)
@@ -219,14 +219,14 @@ class SwipeButton : UIButton , NSCopying  {
         but.setTitleColor(textcolor, forState: UIControlState.Normal)
     
         but.adjustsImageWhenHighlighted = false
-        but.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        but.contentEdgeInsets = EdgeInsets!
         but.sizeToFit()
         return but
     }
     
     func copyWithZone(zone: NSZone) -> AnyObject{
 
-        let but = SwipeButton.button(imageForState(UIControlState.Normal), backgroundImage: backgroundImageForState(UIControlState.Normal), backgroundColor: backgroundColor, text: titleForState(UIControlState.Normal), textFont: titleLabel?.font, textcolor: titleColorForState(UIControlState.Normal))
+        let but = SwipeButton.button(imageForState(UIControlState.Normal), backgroundImage: backgroundImageForState(UIControlState.Normal), backgroundColor: backgroundColor, text: titleForState(UIControlState.Normal), textFont: titleLabel?.font, textcolor: titleColorForState(UIControlState.Normal),EdgeInsets : contentEdgeInsets)
         but.swipeButtonClick = self.swipeButtonClick
         return but
     }
