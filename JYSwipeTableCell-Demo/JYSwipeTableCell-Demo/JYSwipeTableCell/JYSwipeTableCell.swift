@@ -27,11 +27,11 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(backView)
+        contentView.addSubview(backView)
         backView.addSubview(leftView)
         backView.addSubview(rightView)
         backView.addSubview(view)
-        let cons = backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: self).leftSet(-leftView.wide).rightSet(rightView.wide))!
+        let cons = backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: contentView).leftSet(-leftView.wide).rightSet(rightView.wide))!
         leftConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Left)
         rightConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Right)
         
@@ -47,10 +47,23 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         rightView.delegate = self
     }
     
+
+    
 // MARK: - 手势关键
     private func preparebackView(){
         let pan = UIPanGestureRecognizer(target: self, action: "pan:")
-        backView.addGestureRecognizer(pan)
+        pan.delegate = self
+        self.addGestureRecognizer(pan)
+    }
+    
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool{
+        let pan = gestureRecognizer as! UIPanGestureRecognizer
+        let point = pan.translationInView(backView)
+        if abs(point.y) > abs(point.x){
+            return false
+        }
+        
+        return true
     }
     
     func move(c:CGFloat , animation : Bool){
@@ -66,6 +79,9 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
+        
+        print("y:\(point.y)")
+        
         
         // 限制最大的滚动
         if point.x > 0 { // 左滑动 
