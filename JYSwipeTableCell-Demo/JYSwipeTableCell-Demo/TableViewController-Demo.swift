@@ -12,11 +12,11 @@ class TableViewController_Demo: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor.redColor()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 80
         prepareTableViewCell()
     }
     
+    // MARK: cell 以及but 回调设置
     func prepareTableViewCell(){
         // 注册DemoCell
         tableView.registerClass(DemoCell.self, forCellReuseIdentifier: JYDemoCell)
@@ -64,11 +64,11 @@ class TableViewController_Demo: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(JYDemoCell, forIndexPath: indexPath) as! DemoCell
-
+        cell.label.text = "\(indexPath.row) 行 左边图片按钮 右边文字按钮"
         return cell
     }
     
-    // 滚动时收回cell 必须加上该句
+    // MARK: 滚动时收回cell 必须加上该句
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         DemoCell.closeEditCell()
     }

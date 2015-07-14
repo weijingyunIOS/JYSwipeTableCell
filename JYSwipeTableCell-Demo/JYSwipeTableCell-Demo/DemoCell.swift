@@ -12,12 +12,16 @@ class DemoCell: JYSwipeTableCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        view.addSubview(<#T##view: UIView##UIView#>)
+        // 所有控件应该添加到 View 上
+        view.addSubview(label)
+        label.numberOfLines = 0
+        label.ff_edgesView(UIedgeView().center(view))
+        label.font = UIFont.systemFontOfSize(18)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var label = UILabel()
+    lazy var label = UILabel()
 }
