@@ -49,24 +49,15 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         return true
     }
     
-    var panMoveX = 0 as CGFloat
     
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
-        if pan.state == UIGestureRecognizerState.Began{
-            panMoveX = 0
-        }
-        
-        panMoveX += point.x
-        
         maxMove(point)
         
         // 结束后的位置
         if pan.state == UIGestureRecognizerState.Ended {
-            print(panMoveX)
             moveEnd()
         }
-        
         // 清零防止累加
         pan.setTranslation(CGPointZero , inView: backView)
     }
