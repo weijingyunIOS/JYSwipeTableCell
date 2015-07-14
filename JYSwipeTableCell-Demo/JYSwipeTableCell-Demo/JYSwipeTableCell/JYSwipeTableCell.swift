@@ -28,8 +28,6 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         but.swipeButtonClick!(but: but , cell : self)
         closeEditCell()
     }
-    
-    
 
 // MARK: - 手势关键
     private func preparebackView(){
@@ -39,24 +37,33 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     }
     
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool{
-        let pan = gestureRecognizer as! UIPanGestureRecognizer
-        let point = pan.translationInView(backView)
-        if abs(point.y) > abs(point.x){
-            return false
-        }
         
+        if gestureRecognizer.isKindOfClass(UIPanGestureRecognizer.self){
+            
+            let pan = gestureRecognizer as!UIPanGestureRecognizer
+            let point = pan.translationInView(backView)
+            if abs(point.y) > abs(point.x){
+                return false
+            }
+        }
         return true
     }
     
-    var panMoveX = 0
+    var panMoveX = 0 as CGFloat
     
     func pan(pan:UIPanGestureRecognizer){
         let point = pan.translationInView(backView)
-        print("y:\(point.y)")
+        if pan.state == UIGestureRecognizerState.Began{
+            panMoveX = 0
+        }
+        
+        panMoveX += point.x
+        
         maxMove(point)
         
         // 结束后的位置
         if pan.state == UIGestureRecognizerState.Ended {
+            print(panMoveX)
             moveEnd()
         }
         
