@@ -7,7 +7,7 @@
 //
 
 import UIKit
-private   let JYTableCell = "JYSwipeTableCell"
+private  let JYDemoCell = "JYDemoCell"
 class TableViewController_Demo: UITableViewController {
     
     override func viewDidLoad() {
@@ -18,8 +18,8 @@ class TableViewController_Demo: UITableViewController {
     }
     
     func prepareTableViewCell(){
-        // 注册JYSwipeTableCell
-        tableView.registerClass(JYSwipeTableCell.self, forCellReuseIdentifier: JYTableCell)
+        // 注册DemoCell
+        tableView.registerClass(DemoCell.self, forCellReuseIdentifier: JYDemoCell)
         
         // 左边的图片 but 
         let edge = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -39,12 +39,11 @@ class TableViewController_Demo: UITableViewController {
             print("menu")
         }
         
-        JYSwipeTableCell.leftButtons = [imageBut1 , imageBut2 , imageBut3]
+        DemoCell.leftButtons = [imageBut1 , imageBut2 , imageBut3]
         
         
         // 右边的文字 but
         let textBut1 = SwipeButton.button(backgroundColor: UIColor.redColor(), text: "删除", textFont: UIFont.systemFontOfSize(22), textcolor: UIColor.whiteColor())
-        
         let textBut2 = SwipeButton.button(backgroundColor: UIColor.orangeColor(), text: "移动", textFont: UIFont.systemFontOfSize(22), textcolor: UIColor.whiteColor())
     
         textBut1.setButClick { (but, cell) -> () in
@@ -55,27 +54,22 @@ class TableViewController_Demo: UITableViewController {
             print(but.titleForState(UIControlState.Normal))
         }
         
-        JYSwipeTableCell.rightButtons = [textBut2 , textBut1]
+        DemoCell.rightButtons = [textBut2 , textBut1]
     }
     
-    func swipeButtonClick(){
-        print("asdasd")
-    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(JYTableCell, forIndexPath: indexPath) as! JYSwipeTableCell
-        
-        cell.view.backgroundColor = UIColor.purpleColor()
+        let cell = tableView.dequeueReusableCellWithIdentifier(JYDemoCell, forIndexPath: indexPath) as! DemoCell
 
         return cell
     }
     
     // 滚动时收回cell 必须加上该句
     override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        JYSwipeTableCell.closeEditCell()
+        DemoCell.closeEditCell()
     }
 }

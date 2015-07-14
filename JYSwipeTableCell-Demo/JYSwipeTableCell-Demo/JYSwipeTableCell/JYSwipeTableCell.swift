@@ -126,6 +126,7 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         backView.addSubview(leftView)
         backView.addSubview(rightView)
         backView.addSubview(view)
+        view.backgroundColor = UIColor.clearColor()
         let cons = backView.ff_edgesView(UIedgeView().more(tlbr: ff_tlbr.all, v: contentView).leftSet(-leftView.wide).rightSet(rightView.wide))!
         leftConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Left)
         rightConstraint = backView.ff_Constraint(cons, attribute: NSLayoutAttribute.Right)
@@ -166,9 +167,8 @@ class SwipeView : UIView {
     
      init(frame: CGRect , left : Bool ) {
         super.init(frame: frame)
-        backgroundColor = UIColor.blueColor()
+        backgroundColor = UIColor.clearColor()
         let buttons = left ? JYSwipeTableCell.leftButtons : JYSwipeTableCell.rightButtons
-        
         if buttons == nil {
             return
         }
