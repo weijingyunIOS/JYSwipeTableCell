@@ -15,8 +15,8 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
     private static var openCell : JYSwipeTableCell?
     
     // left right 的约束  NSLayoutConstraint
-    var leftConstraint : NSLayoutConstraint?
-    var rightConstraint : NSLayoutConstraint?
+    private var leftConstraint : NSLayoutConstraint?
+    private var rightConstraint : NSLayoutConstraint?
     
     class func closeEditCell(){
         JYSwipeTableCell.openCell?.closeEditCell()
@@ -29,6 +29,97 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         move(-(rightConstraint?.constant)!, animation: true)
     }
     
+    
+
+// MARK: - 手势关键
+    private func preparebackView(){
+        let pan = UIPanGestureRecognizer(target: self, action: "pan:")
+        pan.delegate = self
+        self.addGestureRecognizer(pan)
+    }
+    
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool{
+        let pan = gestureRecognizer as! UIPanGestureRecognizer
+        let point = pan.translationInView(backView)
+        if abs(point.y) > abs(point.x){
+            return false
+        }
+        
+        return true
+    }
+    
+    var panMoveX = 0
+    
+    func pan(pan:UIPanGestureRecognizer){
+        let point = pan.translationInView(backView)
+        print("y:\(point.y)")
+        maxMove(point)
+        
+        // 结束后的位置
+        if pan.state == UIGestureRecognizerState.Ended {
+            moveEnd()
+        }
+        
+        // 清零防止累加
+        pan.setTranslation(CGPointZero , inView: backView)
+    }
+    
+   private func move(c:CGFloat , animation : Bool){
+        self.leftConstraint?.constant += c
+        self.rightConstraint?.constant += c
+        if animation {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+            })
+        }
+    }
+    
+    
+   private func maxMove(point : CGPoint){
+        // 限制最大的滚动
+        if point.x > 0 { // 左滑动
+            if point.x + (leftConstraint?.constant)! >= 0 {
+                move( -(leftConstraint?.constant)! , animation : false)
+            }else {
+                move(point.x , animation : false)
+            }
+            
+        }else {
+            if point.x + (rightConstraint?.constant)! <= 0 {
+                move( -(rightConstraint?.constant)! , animation : false)
+            }else {
+                move(point.x , animation : false)
+            }
+        }
+    }
+    
+    private func moveEnd(){
+        if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
+            openEditCell(leftConstraint)
+        }else if rightConstraint?.constant >= rightView.wide {
+            closeEditCell()
+        }else if rightConstraint?.constant >= rightView.wide * 0.5 {
+            closeEditCell()
+        }else {
+            openEditCell(rightConstraint)
+        }
+    }
+    
+    // 打开关闭cell 记录openCell 保证只有一条打开或关闭
+    private func closeEditCell() {
+        move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
+    }
+    
+    private func openEditCell(constraint:NSLayoutConstraint?){
+        move(-(constraint?.constant)! , animation : true)
+        if self != JYSwipeTableCell.openCell {
+         JYSwipeTableCell.openCell?.closeEditCell()
+        }
+        JYSwipeTableCell.openCell = self
+    }
+    
+    // MARK: 初始化懒加载控件
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(backView)
@@ -50,102 +141,15 @@ class JYSwipeTableCell: UITableViewCell , SwipeViewDelegate{
         leftView.delegate = self
         rightView.delegate = self
     }
-    
 
-    
-// MARK: - 手势关键
-    private func preparebackView(){
-        let pan = UIPanGestureRecognizer(target: self, action: "pan:")
-        pan.delegate = self
-        self.addGestureRecognizer(pan)
-    }
-    
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool{
-        let pan = gestureRecognizer as! UIPanGestureRecognizer
-        let point = pan.translationInView(backView)
-        if abs(point.y) > abs(point.x){
-            return false
-        }
-        
-        return true
-    }
-    
-    func move(c:CGFloat , animation : Bool){
-        self.leftConstraint?.constant += c
-        self.rightConstraint?.constant += c
-        if animation {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.setNeedsLayout()
-                self.layoutIfNeeded()
-            })
-        }
-    }
-    
-    var panMoveX = 0
-    
-    func pan(pan:UIPanGestureRecognizer){
-        let point = pan.translationInView(backView)
-        print("y:\(point.y)")
-        maxMove(point)
-        
-        // 结束后的位置
-        if pan.state == UIGestureRecognizerState.Ended {
-            moveEnd()
-        }
-        
-        // 清零防止累加
-        pan.setTranslation(CGPointZero , inView: backView)
-    }
-    
-    func maxMove(point : CGPoint){
-        // 限制最大的滚动
-        if point.x > 0 { // 左滑动
-            if point.x + (leftConstraint?.constant)! >= 0 {
-                move( -(leftConstraint?.constant)! , animation : false)
-            }else {
-                move(point.x , animation : false)
-            }
-            
-        }else {
-            if point.x + (rightConstraint?.constant)! <= 0 {
-                move( -(rightConstraint?.constant)! , animation : false)
-            }else {
-                move(point.x , animation : false)
-            }
-        }
-    }
-    
-    func moveEnd(){
-        if rightConstraint?.constant >= (leftView.wide * 0.5 + rightView.wide){
-            openEditCell(leftConstraint)
-        }else if rightConstraint?.constant >= rightView.wide {
-            closeEditCell()
-        }else if rightConstraint?.constant >= rightView.wide * 0.5 {
-            closeEditCell()
-        }else {
-            openEditCell(rightConstraint)
-        }
-    }
-    
-    private func closeEditCell() {
-        move(-(rightConstraint?.constant)! + rightView.wide , animation : true)
-    }
-    
-    func openEditCell(constraint:NSLayoutConstraint?){
-        move(-(constraint?.constant)! , animation : true)
-        if self != JYSwipeTableCell.openCell {
-         JYSwipeTableCell.openCell?.closeEditCell()
-        }
-        JYSwipeTableCell.openCell = self
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private lazy var backView = UIView()
-    lazy var leftView : SwipeView = SwipeView(frame: CGRectZero, left: true)
-    lazy var rightView : SwipeView = SwipeView(frame: CGRectZero, left: false)
+    private lazy var leftView : SwipeView = SwipeView(frame: CGRectZero, left: true)
+    private lazy var rightView : SwipeView = SwipeView(frame: CGRectZero, left: false)
     lazy var view = UIView()
 }
 
@@ -156,7 +160,7 @@ protocol SwipeViewDelegate: NSObjectProtocol {
     func SwipeViewbutClick(but : SwipeButton)
 }
 
-class SwipeView : UIView {
+private class SwipeView : UIView {
     var wide = 0 as CGFloat
     weak var delegate : SwipeViewDelegate?
     
