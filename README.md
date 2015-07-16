@@ -76,6 +76,7 @@ func prepareTableViewCell(){
 
 
 3. MARK: 滚动时收回cell 必须加上该句
+
 override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
     DemoCell.closeEditCell()
 }
