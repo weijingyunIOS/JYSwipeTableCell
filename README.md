@@ -3,8 +3,7 @@
 注意： JYSwipeTableCell 是使用的自动布局，自动布局用的 FFAutoLayout-extension。功能简单
 未传到pods。 MGSwipeTableCell-master框架写的功能细节处理更多纯OC，有兴趣的可以去搜搜。
 
-![xml1](http://images.cnblogs.com/cnblogs_com/weijingyun/712268/o_111.gif)
-
+![(演示动画)](http://images.cnblogs.com/cnblogs_com/weijingyun/712268/o_111.gif)
 
 
 使用：
